@@ -1,6 +1,6 @@
 use crate::utils::swap;
 
-pub fn bubble_sort(arr: &mut [i32]) {
+pub fn bubble_sort(arr: &mut [isize]) {
     let mut swapped = true;
     while swapped {
         swapped = false;

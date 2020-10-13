@@ -1,4 +1,4 @@
-pub fn swap(arr: &mut [usize], i: usize, j: usize) {
+pub fn swap(arr: &mut [isize], i: usize, j: usize) {
     let tmp = arr[i];
     arr[i] = arr[j];
     arr[j] = tmp;
@@ -11,6 +11,10 @@ pub fn max(arr: &[usize]) -> usize {
         max = max.max(*elem)
     }
     return max;
+}
+
+pub fn get_digit_at_index(number: isize, digit_index: isize) -> isize {
+    return number / 10.pow(u32(digit_index - 1)) % 10;
 }
 
 #[cfg(test)]
