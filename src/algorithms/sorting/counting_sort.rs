@@ -1,4 +1,5 @@
 use crate::utils::max;
+use crate::utils::get_digit_at_index;
 
 pub fn counting_sort(arr: &mut [usize]) {
     let max = max(arr);
@@ -8,15 +9,35 @@ pub fn counting_sort(arr: &mut [usize]) {
     result.resize(arr.len(), 0);
 
     for index in 0..arr.len() {
-        c[arr[index]] = c[arr[index]] + 1;
+        c[arr[index]] += 1;
     }
-
     for i in 1..c.len() {
         c[i] += c[i - 1];
     }
     for j in (0..arr.len()).rev() {
         result[c[arr[j]] - 1] = arr[j];
-        c[arr[j]] = c[arr[j]] - 1;
+        c[arr[j]] -= 1;
+    }
+    for i in 0..result.len() {
+        arr[i] = result[i];
+    }
+}
+
+pub fn counting_sort_on_digit(arr: &mut [isize], digit_index: usize) {
+    let mut c: Vec<usize> = vec![];
+    c.resize(10, 0);
+    let mut result = vec![];
+    result.resize(arr.len(), 0);
+
+    for index in 0..arr.len() {
+        c[get_digit_at_index(arr[index], digit_index)] += 1;
+    }
+    for i in 1..c.len() {
+        c[i] += c[i - 1];
+    }
+    for j in (0..arr.len()).rev() {
+        result[c[get_digit_at_index(arr[j], digit_index)] - 1] = arr[j];
+        c[get_digit_at_index(arr[j], digit_index)] -= 1;
     }
     for i in 0..result.len() {
         arr[i] = result[i];

@@ -13,7 +13,7 @@ pub fn max(arr: &[usize]) -> usize {
     return max;
 }
 
-pub fn get_digit_at_index(number: isize, digit_index: isize) -> isize {
+pub fn get_digit_at_index(number: isize, digit_index: usize) -> isize {
     return number / 10.pow(u32(digit_index - 1)) % 10;
 }
 
